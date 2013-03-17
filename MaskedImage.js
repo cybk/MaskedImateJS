@@ -12,6 +12,7 @@
     };
     var idCirc = 0;
     var opts = $.extend({}, defaults, options);
+	var positions = [];
     var img = new Image();
     img.onload = function () {
         var filteredYoda = new Kinetic.Image({
@@ -68,7 +69,7 @@
             });
             circ.on('dragmove', function (e) {
                 if (groupk) {
-                    var positions = poly.getPoints();
+                    positions = poly.getPoints();
                     var pos = e.shape.attrs.name;
                     positions[pos].x = e.shape.attrs.x;
                     positions[pos].y = e.shape.attrs.y;
@@ -90,6 +91,11 @@
 
     img.src = opts.imgPath;
     
+    var getpositions = function() {
+        return positions;
+    };
+    
     return {
+        getMaskPositions: getpositions
     };
 };
